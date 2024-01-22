@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StyledComponentsRegistry from '@/lib/registry'
 import RecoilContextProvider from '@/recoil/recoilContextProvider'
+import { ThemeProvider } from '@/components/theme-provider'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +20,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         <RecoilContextProvider>
           <StyledComponentsRegistry>
             {children}
           </StyledComponentsRegistry>
         </RecoilContextProvider>
+      </ThemeProvider>
       </body>
     </html>
   );
