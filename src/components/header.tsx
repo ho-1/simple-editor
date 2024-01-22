@@ -20,4 +20,6 @@ const HeaderStyle = styled.header`
     width: 100%;
     height: 50px;
     padding: 16px;
+    z-index: 1000;
+    border-bottom: 1px solid #7b7b7b;
 `

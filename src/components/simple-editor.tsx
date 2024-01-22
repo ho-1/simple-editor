@@ -1,41 +1,46 @@
 'use client';
 
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { useState } from 'react'
-import { themeState } from '@/recoil/themeAtom'
 import styled from 'styled-components'
-import MonacoEditor from 'react-monaco-editor/lib/editor'
+import { themeState } from '@/recoil/themeAtom'
+import { sampleData } from '@/data'
+import { Editor } from '@monaco-editor/react'
 
 interface SimpleEditorProps {}
 
 export const SimpleEditor = ({}: SimpleEditorProps) => {
-  const [code, setCode] = useState<string>('console.log("Hello, world!")')
-  const theme = useRecoilState(themeState);
+  const [code, setCode] = useState<string>(sampleData)
+  const theme = useRecoilValue(themeState);
 
-  const onChange = (newValue: string, event: any) => {
-    setCode(newValue);
-  };
+  const handleEditorChange = (value: string = "") => {
+    setCode(value);
+  }
 
   return (
     <Main>
-      <MonacoEditor
-        width="800px"
-        height="60vh"
-        language="javascript"
-        onChange={onChange}
-        defaultValue={code}
-        value={code}
-        theme='vs-dark'
-        options={{
-          minimap: {
-            enabled: false
-          }
-        }}
-      />
+      <EditorWrapper>
+        <Editor
+          width='50vw'
+          height='90vh'
+          theme={theme}
+          language='html'
+          defaultValue={code}
+          options={{ minimap: { enabled: false } }}
+          onChange={handleEditorChange}
+        />
+      </EditorWrapper>
     </Main>
   );
 }
 
 const Main = styled.main`
     padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const EditorWrapper = styled.div`
+    border: 1px solid #7b7b7b;
 `
