@@ -3,7 +3,7 @@
 import { useRecoilValue } from 'recoil'
 import { useState } from 'react'
 import styled from 'styled-components'
-import { themeState } from '@/recoil/themeAtom'
+import { editorThemeState } from '@/recoil/editor-theme-atom'
 import { sampleData } from '@/data'
 import { Editor } from '@monaco-editor/react'
 
@@ -11,7 +11,7 @@ interface SimpleEditorProps {}
 
 export const SimpleEditor = ({}: SimpleEditorProps) => {
   const [code, setCode] = useState<string>(sampleData)
-  const theme = useRecoilValue(themeState);
+  const theme = useRecoilValue(editorThemeState);
 
   const handleEditorChange = (value: string = "") => {
     setCode(value);

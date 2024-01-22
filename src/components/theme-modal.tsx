@@ -4,14 +4,14 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { useTheme } from 'next-themes'
 import { useRecoilState } from 'recoil'
-import { themeState } from '@/recoil/themeAtom'
+import { editorThemeState } from '@/recoil/editor-theme-atom'
 
 interface ThemeDialogProps {}
 
 export const ThemeModal = ({}: ThemeDialogProps) => {
   const { setTheme } = useTheme()
   const [showModal, setShowModal] = useState(false);
-  const [theme, setThemeState] = useRecoilState(themeState);
+  const [theme, setThemeState] = useRecoilState(editorThemeState);
 
   const handleDialog = () => {
     setShowModal(!showModal);
