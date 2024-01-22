@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { useTheme } from 'next-themes'
 import { useRecoilState } from 'recoil'
-import { editorThemeState } from '@/recoil/editor-theme-atom'
+import { EditorTheme, editorThemeState } from '@/recoil/editor-theme-atom'
 
 interface ThemeDialogProps {}
 
@@ -21,11 +21,11 @@ export const ThemeModal = ({}: ThemeDialogProps) => {
     setTheme(value);
 
     if (value === 'dark') {
-      setThemeState('vs-dark');
+      setThemeState('vs-dark' as EditorTheme);
       return;
     }
 
-    setThemeState(value);
+    setThemeState(value as EditorTheme);
   }
 
   return (
